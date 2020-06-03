@@ -1,78 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>"Новый сайт"</title>
 
     <style>
-        .greentext {
+        .green-text {
             color:green;
         }
+
         .azurebackground {
             background-color: azure;
         }
     </style>
-
 </head>
+
 <body>
-
-<h1>Последние новости г.Нососибирск</h1>
-<hr/><h2 class="greentext">Илон Маск запустил пилотируемый корабль</h2>
-<p>Компания SpaceX запустила коммерческий космический корабль. Это первый за 9 лет пилотируемый запуск,
+    <h1>Последние новости г.Нососибирск</h1>
+    <hr/><h2 class="green-text">Илон Маск запустил пилотируемый корабль</h2>
+    <p>Компания SpaceX запустила коммерческий космический корабль. Это первый за 9 лет пилотируемый запуск,
     который США организовали самостоятельно.</p>
+    <p>Новый Crew Dragon это:</p>
+    <ul>
+        <li>Модно</li>
+        <li>Стильно</li>
+        <li>Молодежно</li>
+    </ul>
 
-<p>Новый Crew Dragon это:</p>
-<ul>
-    <li>Модно</li>
-    <li>Стильно</li>
-    <li>Молодежно</li>
-</ul>
+    <img src="https://image.krasview.ru/video/000ed577c20d918/__2.jpg" alt="Новости об Илоне Маске" width="600"/>
+    <br/><a href="http://ya.ru">Ссылка на яндекс</a>
+    <br/><a target="_blank" href="http://google.ru">Ссылка на google</a>
 
-<img src="https://image.krasview.ru/video/000ed577c20d918/__2.jpg" alt="Новости об Илоне Маске" width="600"/>
-<br/><a href="http://ya.ru">Ссылка на яндекс</a>
-<br/><a target="_blank" href="http://google.ru">Ссылка на google</a>
+    <table border="1">
+        <thead>
+            <tr>
+            <th colspan="2">Общая Строка</th>
+            <th>Столбец1</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td rowspan="2">Общий столбец</td>
+            <td>Ячейка1</td>
+            <td>Ячейка2</td>
+        </tr>
+        <tr>
+            <td>Ячейка3</td>
+            <td>Ячейка4</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr/>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th colspan="2">Общая Строка</th>
-        <th>Столбец1</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td rowspan="2">Общий столбец</td>
-        <td>Ячейка1</td>
-        <td>Ячейка2</td>
-    </tr>
-    <tr>
-        <td>Ячейка3</td>
-        <td>Ячейка4</td>
-    </tr>
-    </tbody>
-</table>
-<hr/>
-
-<p>После того, как ракеты <b>Илона Маска</b> начали активно летать на орбиту не только в гражданских,
+    <p>После того, как ракеты <b>Илона Маска</b> начали активно летать на орбиту не только в гражданских,
     но и в военных целях, в стане российских ракетостроителей начало расти <i>беспокойство</i>.</p>
-<p>Илон Маск действительно совершил <b>невозможное</b> — фактически, вырвал с корнем рынок коммерческих
+    <p>Илон Маск действительно совершил <b>невозможное</b> — фактически, вырвал с корнем рынок коммерческих
     пусков и сосредоточил его вокруг себя. Любая телекоммуникационная компания или агентство, в планы
     которых входили космические пуски, смогли себе позволить быстрый и относительно недорогой запуск.</p>
-<p class="azurebackground">Как вы считаете Илон Маск:</p>
+    <p class="azurebackground">Как вы считаете Илон Маск:</p>
 
-<form method="post" action="handler.php">
+    <form method="post" action="handler.php">
     <label>
-    <input checked="checked" type="radio" value="1" name="myRadio">Аферист
-    <input type="radio" value="2" name="myRadio">Гений
-    <input type="radio" value="3" name="myRadio">Не знаю кто это
-    <input type="text" name="newVariant" placeholder="Ваш вариант"/>
+        <input checked="checked" type="radio" value="1" name="my-radio" id="scam"><label for="scam">Аферист</label>
+        <input type="radio" value="2" name="my-radio" id="genius"><label for="genius">Гений</label>
+        <input type="radio" value="3" name="my-radio" id="do-not-know"><label for="do-not-know">Не знаю кто это</label>
+        <input type="text" name="new-variant" placeholder="Ваш вариант"/>
     </label>
 
     <br/><br/>
-    <input type="submit" value="Проголосовать">
-</form>
+        <input type="submit" value="Проголосовать">
+    </form>
 
-<br/><a href="index.html">Вернуться к странице заполнения форм</a>
-
+    <br/><a href="index.html">Вернуться к странице заполнения форм</a>
 </body>
 </html>
