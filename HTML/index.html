@@ -1,42 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta name="Test page" charset="UTF-8">
     <title>Главная страница</title>
 </head>
 
 <body>
-    <h1>Форма обратной связи</h1>
-    <p>Пожалуйста, введите свои данные:</p>
-    <form action="/handler.php" method="post" enctype="multipart/form-data">
+<h1>Форма обратной связи</h1>
+<p>Пожалуйста, введите свои данные:</p>
+<form action="/handler.php" method="post" enctype="multipart/form-data">
 
-    <label for="client-name">Ваше имя</label>
-    <input type="text" id="client-name" name="client-name" required="required">
+    <label>Ваше имя
+        <input type="text" name="client-name" required="required">
+    </label>
 
-    <label for="client-surname">Ваша фамилия</label>
-    <input type="text" id="client-surname" name="client-surname" required="required">
-
-    <br/><br/>
-    <label for="date">Ваша дата рождения</label>
-    <input type="date" id="date" name="date">
+    <label>Ваша фамилия
+        <input type="text" name="client-surname" required="required">
+    </label>
 
     <br/><br/>
-    <label for="phone">Ваш телефон</label>
-    <input type="text" id="phone" name="phone" placeholder="+7-923-000-23-23">
+    <label>Ваша дата рождения
+        <input type="date" name="date">
+    </label>
 
     <br/><br/>
-    <label for="age">Ваш возраст</label>
-    <input type="number" id="age" name="age">
+    <label>Ваш телефон
+        <input type="text" name="phone" placeholder="+7-923-000-23-23">
+    </label>
 
     <br/><br/>
-    <label for="money">Ваш ежемесячный доход</label>
-    <select name="money" id="money">
-        <option value="1">до 20 000 руб</option>
-        <option value="2" selected>20 000-50 000 руб</option>
-        <option value="3">50 000-100 000 руб</option>
-        <option value="4">100 000-200 000 руб</option>
-        <option value="5">более 200 000 руб</option>
-    </select>
+    <label>Ваш возраст
+        <input type="number" name="age">
+    </label>
+
+    <br/><br/>
+    <label>Ваш ежемесячный доход
+        <select name="money">
+            <option value="1">до 20 000 руб</option>
+            <option value="2" selected>20 000-50 000 руб</option>
+            <option value="3">50 000-100 000 руб</option>
+            <option value="4">100 000-200 000 руб</option>
+            <option value="5">более 200 000 руб</option>
+        </select>
+    </label>
 
     <br/><br/>
     <label>Вы поддерживаете поправки в конституцию РФ?
@@ -45,46 +51,53 @@
 
     <br/><br/>
     <label>Вы поддерживаете политику Единой России?
-        <input type="text" value="Я поддерживаю политику Единой России. Путин наш президент" name="er" readonly="readonly" size="60">
+        <input type="text" value="Я поддерживаю политику Единой России. Путин наш президент" name="er"
+               readonly="readonly" size="60">
+    </label>
+
+    <br/><br/>Как вы проводите свой досуг?
+    <input type="checkbox" value="1" name="hobby" checked="checked" id="serials"><label for="serials">Сериалы</label>
+    <input type="checkbox" value="2" name="hobby" id="books"><label for="books">Книги</label>
+    <input type="checkbox" value="3" name="hobby" id="sport"><label for="sport">Спорт</label>
+    <input type="checkbox" value="4" name="hobby" id="games"><label for="games">Игры</label>
+    <input type="checkbox" value="5" name="hobby" id="other"><label for="other">Другое</label>
+
+    <br/><br/>Ваш пол
+    <input type="radio" value="1" name="gender" id="male"><label for="male">Мужской</label>
+    <input type="radio" value="2" name="gender" id="female"><label for="female">Женский</label>
+    <input type="radio" value="3" name="gender" id="without"><label for="without">Не определился/лась</label>
+
+    <br/><br/>
+    <label>Вы предпочитаете передвигаться по городу:
+        <select name="transport" id="transport" multiple="multiple">
+            <option value="underground">Метро</option>
+            <option value="bus" selected>Автобус</option>
+            <option value="car">Личный автомобиль</option>
+            <option value="taxi">Такси</option>
+            <option value="foot">Пешком</option>
+        </select>
     </label>
 
     <br/><br/>
-    Как вы проводите свой досуг?
-        <input type="checkbox" value="1" name="hobby" checked="checked" id="serials"><label for="serials">Сериалы</label>
-        <input type="checkbox" value="2" name="hobby" id="books"><label for="books">Книги</label>
-        <input type="checkbox" value="3" name="hobby" id="sport"><label for="sport">Спорт</label>
-        <input type="checkbox" value="4" name="hobby" id="games"><label for="games">Игры</label>
-        <input type="checkbox" value="5" name="hobby" id="other"><label for="other">Другое</label>
-
-    <br/><br/>
-    Ваш пол
-        <input type="radio" value="1" name="gender" id="male"><label for="male">Мужской</label>
-        <input type="radio" value="2" name="gender" id="female"><label for="female">Женский</label>
-        <input type="radio" value="3" name="gender" id="without"><label for="without">Не определился/лась</label>
-
-    <br/><br/>
-    <label for="money">Вы предпочитаете передвигаться по городу:
-    <select name="transport" id="transport" multiple="multiple">
-        <option value="underground">Метро</option>
-        <option value="bus" selected>Автобус</option>
-        <option value="car">Личный автомобиль</option>
-        <option value="taxi">Такси</option>
-        <option value="foot">Пешком</option>
-    </select>
+    <label>Загрузите фото вашего паспорта
+        <input type="file" name="photo">
     </label>
 
     <br/><br/>
-    <label for="photo">Загрузите фото вашего паспорта</label>
-    <input type="file" id="photo" name="photo">
-    <br/><br/>
-    <label for="additional-info">Дополнительная информация</label>
-    <textarea cols="30" id="additional-info" name="additional-info"></textarea>
+    <label>Дополнительная информация
+        <textarea cols="30" name="additional-info"></textarea>
+    </label>
 
-    <input type="hidden" id="secret" name="secret" value="Тссс!Тут секретная информация!">
+    <label>
+        <input type="hidden" id="secret" name="secret" value="Тссс!Тут секретная информация!">
+    </label>
 
     <br/><br/>
-    Цвет настроения
-        <input type="color" name="color" checked="checked" value="#0000ff"> внутри
+    <label>Цвет настроения
+        <input type="color" name="color" checked="checked" value="#0000ff">
+    </label>
+
+    <label>внутри
         <select name="alco">
             <option disabled selected>Выберите напиток</option>
             <option value="martini">Мартини</option>
@@ -92,8 +105,10 @@
             <option value="milk">Молоко</option>
             <option value="okroshka">Окрошка</option>
             <option value="teruflu">Терафлю</option>
-        </select> а в руках
+        </select>
+    </label>
 
+    <label>а в руках
         <select name="hand">
             <option disabled selected>Выберите предмет</option>
             <option value="bikini">Бикини</option>
@@ -102,9 +117,11 @@
             <option value="martini">Мартини</option>
             <option value="splinters">Занозы</option>
         </select>.
+    </label>
 
-    <br/><br/><button type="submit">Отправить</button>
-    </form>
-    <br/><a href="news.html">Посмотреть новости</a>
+    <br/><br/>
+    <button type="submit">Отправить</button>
+</form>
+<br/><a href="news.html">Посмотреть новости</a>
 </body>
 </html>
