@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+}
+
+.cell1 {
+    width: 153px;
+}
+
+.cell2 {
+    width: 150px;
+}
+
+.cell3 {
+    width: 270px;
+}
+
+.cell4 {
+    width: 174px;
+}
+
+.common {
+    margin: 30px auto;
+    vertical-align: bottom;
+    vert-align: middle;
+    border-collapse: collapse;
+    font-family: Calibri, serif;
+    font-size: 20.5px;
+}
+
+.common tr {
+    height: 45px;
+}
+
+.common td {
+    vertical-align: middle;
+    border: 1px solid #CCCCCC;
+    padding-left: 10px;
+}
+
+.jobTitleMargin {
+    padding-left: 2px;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #EEEEEE;
+}
+
+.thead {
+    background-color: #3498DB;
+    color: white;
+}
+
+#head-cell3 {
+    padding-left: 8px;
+}
