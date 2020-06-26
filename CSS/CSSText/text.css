@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+
+.common h1 {
+    color: #676565;
+    font-size: 27px;
+    font-family: Arial, serif;
+    margin-bottom: 13px;
+    line-height: 114%;
+    word-spacing: 0;
+    letter-spacing: 0.57px;
+}
+
+.usualText {
+    color: #676565;
+}
+
+.blueColorText {
+    letter-spacing: 0.57px;
+    color: #378DB2;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.common {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7px;
+    background-color: #FEEED6;
+    max-width: 720px;
+    font-size: 20px;
+}
+
+.bodyText {
+    text-align: justify;
+    font-family: sans-serif;
+    text-indent: 16px;
+    font-size: 15px;
+    color: #676565;
+    letter-spacing: 0.2px;
+    line-height: 145%;
+}
+
+.lastLine {
+    margin-top: 14px;
+    margin-bottom: 7px;
+}
+
+.usualMargin {
+    margin-top: 10px;
+}
+
+.firstParagraphMargin {
+    margin-top: 7px;
+}
+
+.crossedText {
+    text-decoration: line-through;
+}
