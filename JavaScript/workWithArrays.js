@@ -1,34 +1,47 @@
-var V = {
-    array: [5, 0, 12, 4, 67, 23, -4, 8, 6, 5, -31],
-    arr: []
-};
+(function f() {
+    var arrays = {
+        unsorted: [5, 0, 12, 4, 67, 23, -4, 8, 6, 5, -31],
+        fromOneToHundred: []
+    };
 
-(function (array) {
-    array.sort(function (a, b) {
-        return (b - a);
-    });
-    console.log("Осортированный по убыванию массив: " + array);
-}(V.array));
+    function decreaseSort(array) {
+        array.sort(function (a, b) {
+            return (b - a);
+        });
+        return array;
+    }
 
-(function getFirstFiveElements(array) {
-    console.log("Подмассив из первых пяти элементов: " + array.slice(0, 5));
-}(V.array));
+    function getFirstFiveElements(array) {
+        return array.slice(0, 5);
+    }
 
-(function getLastFiveElements(array) {
-    console.log("Подмассив из последних пяти элементов: " + array.slice(array.length - 5));
-}(V.array));
+    function getLastFiveElements(array) {
+        return array.slice(array.length - 5);
+    }
 
-(function getSumEvenNumbers(array) {
-    console.log("Сумма четных элементов массива: " + array.filter(a => a % 2 === 0).reduce(function (sum, currentItem) {
-        return sum + currentItem;
-    })
-    );
-}(V.array));
+    function getEvenNumbersSum(array) {
+        return array.filter(function (e) {
+            return e % 2 === 0
+        }).reduce(function (sum, currentItem) {
+            return sum + currentItem;
+        }, 0);
+    }
 
-for (var i = 1; i < 101; ++i) {
-    V.arr[i - 1] = i
-}
+    for (var i = 1; i <= 100; ++i) {
+        arrays.fromOneToHundred.push(i);
+    }
 
-(function getSquareEvenNumbers(array) {
-    console.log("Список квадратов четных чисел: " + array.filter(a => a % 2 === 0).map(a => a * a));
-}(V.arr));
+    function getEvenNumbersSquare(array) {
+        return array.filter(function (number) {
+            return number % 2 === 0
+        }).map(function (e) {
+            return e * e
+        });
+    }
+
+    console.log("Осортированный по убыванию массив: " + decreaseSort(arrays.unsorted));
+    console.log("Подмассив из первых пяти элементов: " + getFirstFiveElements(arrays.unsorted));
+    console.log("Подмассив из последних пяти элементов: " + getLastFiveElements(arrays.unsorted));
+    console.log("Сумма четных элементов массива: " + getEvenNumbersSum(arrays.unsorted));
+    console.log("Список квадратов четных чисел: " + getEvenNumbersSquare(arrays.fromOneToHundred));
+}());
