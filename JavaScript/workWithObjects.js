@@ -28,33 +28,32 @@
         }
     ];
 
-    function findMaxCitiesQuantityCountries(countries) {
-        var maxCitiesQuantity = 0;
-        var maxCitiesQuantityCountries = [];
-        countries.forEach(function (item) {
-            if (item.cities.length > maxCitiesQuantity) {
-                maxCitiesQuantity = item.cities.length;
+    function getMaxCitiesQuantityCountries(countries) {
+        var maxCitiesQuantity = countries.reduce(function (max, item) {
+            if (item.cities.length > max) {
+                max = item.cities.length;
             }
-        });
 
-        countries.forEach(function (item) {
-            if (item.cities.length === maxCitiesQuantity) {
-                maxCitiesQuantityCountries.push(item.name);
-            }
+            return max;
+        }, 0);
+
+        return countries.filter(function (item) {
+            return item.cities.length === maxCitiesQuantity;
         });
-        return maxCitiesQuantityCountries;
     }
 
     function getAllCountriesPopulationSum(countries) {
         var obj = {};
+
         countries.forEach(function (item) {
             obj[item.name] = item.cities.reduce(function (sum, currentItem) {
                 return sum + currentItem.population;
             }, 0);
         });
+
         return obj;
     }
 
-    console.log(findMaxCitiesQuantityCountries(countries));
+    console.log(getMaxCitiesQuantityCountries(countries));
     console.log(getAllCountriesPopulationSum(countries));
 })();

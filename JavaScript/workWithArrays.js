@@ -1,14 +1,11 @@
-(function f() {
-    var arrays = {
-        unsorted: [5, 0, 12, 4, 67, 23, -4, 8, 6, 5, -31],
-        fromOneToHundred: []
-    };
+(function () {
+    var unsorted = [5, 0, 12, 4, 67, 23, -4, 8, 6, 5, -31];
+    var fromOneToHundred = [];
 
     function decreaseSort(array) {
-        array.sort(function (a, b) {
+        return array.sort(function (a, b) {
             return (b - a);
         });
-        return array;
     }
 
     function getFirstFiveElements(array) {
@@ -21,27 +18,27 @@
 
     function getEvenNumbersSum(array) {
         return array.filter(function (e) {
-            return e % 2 === 0
+            return e % 2 === 0;
         }).reduce(function (sum, currentItem) {
             return sum + currentItem;
         }, 0);
     }
 
     for (var i = 1; i <= 100; ++i) {
-        arrays.fromOneToHundred.push(i);
+        fromOneToHundred.push(i);
     }
 
     function getEvenNumbersSquare(array) {
         return array.filter(function (number) {
-            return number % 2 === 0
+            return number % 2 === 0;
         }).map(function (e) {
-            return e * e
+            return e * e;
         });
     }
 
-    console.log("Осортированный по убыванию массив: " + decreaseSort(arrays.unsorted));
-    console.log("Подмассив из первых пяти элементов: " + getFirstFiveElements(arrays.unsorted));
-    console.log("Подмассив из последних пяти элементов: " + getLastFiveElements(arrays.unsorted));
-    console.log("Сумма четных элементов массива: " + getEvenNumbersSum(arrays.unsorted));
-    console.log("Список квадратов четных чисел: " + getEvenNumbersSquare(arrays.fromOneToHundred));
+    console.log("Осортированный по убыванию массив: " + decreaseSort(unsorted));
+    console.log("Подмассив из первых пяти элементов: " + getFirstFiveElements(unsorted));
+    console.log("Подмассив из последних пяти элементов: " + getLastFiveElements(unsorted));
+    console.log("Сумма четных элементов массива: " + getEvenNumbersSum(unsorted));
+    console.log("Список квадратов четных чисел: " + getEvenNumbersSquare(fromOneToHundred));
 }());
