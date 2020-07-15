@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
             alert('Введите значение');
         } else {
             var todoItem = document.createElement("li");
-            switchToViewModel();
+            switchToViewMode();
         }
 
-        function switchToViewModel() {
+        function switchToViewMode() {
             todoItem.innerHTML = "<span></span><button type='button' class='edit-button'>Редактировать</button><button type='button' class='delete-button'>Удалить</button>";
             todoItem.children[0].textContent = text;
 
@@ -27,12 +27,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 todoItem.children[0].value = text;
 
                 todoItem.querySelector(".cancel-button").addEventListener("click", function () {
-                    switchToViewModel()
+                    switchToViewMode();
                 });
 
                 todoItem.querySelector(".save-button").addEventListener("click", function () {
                     text = todoItem.children[0].value;
-                    switchToViewModel()
+                    switchToViewMode();
                 });
             });
         }
