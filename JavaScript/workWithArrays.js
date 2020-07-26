@@ -1,8 +1,5 @@
 (function () {
-    var unsorted = [5, 0, 12, 4, 67, 23, -4, 8, 6, 5, -31];
-    var fromOneToHundred = [];
-
-    function decreaseSort(array) {
+    function sortDescending(array) {
         return array.sort(function (a, b) {
             return (b - a);
         });
@@ -24,6 +21,9 @@
         }, 0);
     }
 
+    var unsorted = [5, 0, 12, 4, 67, 23, -4, 8, 6, 5, -31];
+    var fromOneToHundred = [];
+
     for (var i = 1; i <= 100; ++i) {
         fromOneToHundred.push(i);
     }
@@ -36,7 +36,7 @@
         });
     }
 
-    console.log("Осортированный по убыванию массив: " + decreaseSort(unsorted));
+    console.log("Осортированный по убыванию массив: " + sortDescending(unsorted));
     console.log("Подмассив из первых пяти элементов: " + getFirstFiveElements(unsorted));
     console.log("Подмассив из последних пяти элементов: " + getLastFiveElements(unsorted));
     console.log("Сумма четных элементов массива: " + getEvenNumbersSum(unsorted));
