@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+}
+
+.emptyField {
+    border-color: red;
+}
+
+.error {
+    color: red;
+}
+
+.block-left {
+    width: 40%;
+    height: 800px;
+    overflow: auto;
+    float: left;
+}
+
+.block-right {
+    width: 60%;
+    height: 800px;
+    overflow: auto;
+}
+
+.cell1 {
+    width: 53px;
+}
+
+.cell2 {
+    width: 150px;
+}
+
+.cell3 {
+    width: 150px;
+}
+
+.cell4 {
+    width: 174px;
+}
+
+.cell5 {
+    width: 45px;
+}
+
+.common td {
+    vertical-align: middle;
+    border: 1px solid #CCCCCC;
+    padding-left: 10px;
+}
+
+.thead {
+    background-color: #3498DB;
+    color: white;
+}
+
+td {
+    padding-left: 10px;
+    border: 1px solid #CCCCCC;
+}
