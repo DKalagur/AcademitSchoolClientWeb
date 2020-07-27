@@ -30,11 +30,7 @@
 
     function getMaxCitiesQuantityCountries(countries) {
         var maxCitiesQuantity = countries.reduce(function (max, item) {
-            if (item.cities.length > max) {
-                max = item.cities.length;
-            }
-
-            return max;
+            return Math.max(max, item.cities.length);
         }, 0);
 
         return countries.filter(function (item) {
