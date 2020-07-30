@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7px;
+    background-color: #FEEED6;
+    max-width: 720px;
+
+
+    color: #676565;
+    font-family: Arial, serif;
+    /* font-size: 20px;*/
+
+    /*font-size: 14px;
+    font-family: Arial, serif;
+    font-weight: bold;*/
+
+}
+
+label {
+    font-weight: bold;
+    color: #676565;
+    font-family: Arial, serif;
+    font-size: 14px;
+}
+
+input, textarea {
+    width: 699px;
+    height: 37px;
+    box-shadow: none;
+    border-color: white;
+    border: none;
+    /*font-size: 14px;
+    font-family: Arial, serif;*/
+}
+
+.text {
+    height: 37px;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    color: grey;
+    font-size: 14px;
+    font-family: Arial, serif;
+    padding-left: 8px;
+}
