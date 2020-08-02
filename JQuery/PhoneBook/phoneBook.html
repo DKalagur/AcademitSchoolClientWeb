@@ -1,21 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Task Phone Book</title>
+    <link rel="stylesheet" type="text/css" href="normalize.css">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/jquery-confirm/css/jquery-confirm.css">
 </head>
 <body>
 <div class="block-left">
     <h3>Таблица с контактами</h3>
-    <table>
+
+    <form>
+        <label>Поиск
+            <input type="text" id="search">
+        </label>
+        <button type="button" id="do-search">Найти</button>
+        <button type="button" id="cancel-search">Отмена</button>
+    </form>
+
+    <div class="del-selected">
+        <button type="button" id="del-selected-row">Удалить выделенное</button>
+    </div>
+
+    <table class="common">
         <thead class="thead">
-        <tr class="common">
-            <td class="cell1" id="number">№</td>
-            <td class="cell2" id="table-surname">Фамилия</td>
-            <td class="cell3" id="table-name">Имя</td>
-            <td class="cell4" id="table-phone">Номер телефона</td>
-            <td class="cell5"></td>
+        <tr>
+            <td class="checkbox-cell"><label for="main-checkbox"><input type='checkbox' id='main-checkbox'></label></td>
+            <td class="number-cell" id="number">№</td>
+            <td class="surname-cell" id="table-surname">Фамилия</td>
+            <td class="name-cell" id="table-name">Имя</td>
+            <td class="phone-cell" id="table-phone">Номер телефона</td>
+            <td class="del-cell"></td>
         </tr>
         </thead>
         <tbody id="tbody">
@@ -23,7 +39,7 @@
     </table>
 </div>
 
-<div class="block-right">
+<div class="block-right" id="block-right">
     <h3>Форма добавления нового контакта</h3>
     <form>
         <label>Фамилия
@@ -38,13 +54,15 @@
         <button type="button" id="add-new-people">Добавить запись</button>
     </form>
 
-    <div hidden="hidden" id="all-list">
+    <div hidden="hidden" id="error-list-block">
         <ul class="error" id="error-list">Не все поля заполнены! Необходимо заполнить следующие поля (поле):
         </ul>
     </div>
 
 </div>
-<script src="../../libs/jquery-3.5.1.min.js"></script>
+
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/jquery-confirm/js/jquery-confirm.js"></script>
 <script src="phoneBook.js"></script>
 </body>
 </html>

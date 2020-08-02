@@ -2,59 +2,86 @@
     box-sizing: border-box;
 }
 
-.emptyField {
-    border-color: red;
+.empty-field {
+    border-color: #f00;
 }
 
 .error {
-    color: red;
+    color: #f00;
 }
 
 .block-left {
-    width: 40%;
-    height: 800px;
+    width: 60%;
     overflow: auto;
     float: left;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .block-right {
-    width: 60%;
-    height: 800px;
+    width: 40%;
     overflow: auto;
+    text-align: center;
+    margin: auto;
 }
 
-.cell1 {
-    width: 53px;
+.number-cell {
+    width: 8.6%;
 }
 
-.cell2 {
-    width: 150px;
+.surname-cell {
+    width: 24.2%;
 }
 
-.cell3 {
-    width: 150px;
+.name-cell {
+    width: 24.2%;
 }
 
-.cell4 {
-    width: 174px;
+.phone-cell {
+    width: 28.2%;
 }
 
-.cell5 {
-    width: 45px;
+.del-cell {
+    width: 7.3%;
+}
+
+.checkbox-cell {
+    width: 7.3%;
+    padding-right: 10px;
+    text-align: center;
+}
+
+.block-left table {
+    width: 100%;
 }
 
 .common td {
     vertical-align: middle;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #CCC;
     padding-left: 10px;
 }
 
 .thead {
-    background-color: #3498DB;
-    color: white;
+    background-color: #EEE;
+    color: #ff7569;
 }
 
-td {
-    padding-left: 10px;
-    border: 1px solid #CCCCCC;
+.del-selected {
+    display: inline-block;
+    float: right;
+}
+
+.block-right input {
+    display: table;
+    margin: auto;
+    text-align: center;
+}
+
+.block-right li {
+    text-align: left;
+}
+
+.notInfoCell {
+    text-align: center;
+    padding-right: 10px;
 }
