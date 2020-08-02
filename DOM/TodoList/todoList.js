@@ -6,11 +6,11 @@
     function addTask() {
         var text = newTodoTextField.value;
         var todoItem = document.createElement("li");
+        var isNeedToAddNewChild = true;
 
         if (text.trim().length === 0) {
             alert('Введите значение');
         } else {
-            var isNeedToAddNewChild = true;
             switchToViewMode();
         }
 
@@ -26,8 +26,13 @@
                 todoItem.innerHTML = "<input type='text' class='todo-text'><button type='button' class='save-button'>Сохранить</button><button type='button' class='cancel-button'>Отменить</button>";
                 todoItem.children[0].value = text;
 
+                var initialText = text;
+
                 todoItem.querySelector(".cancel-button").addEventListener("click", function () {
                     isNeedToAddNewChild = false;
+                    if (text === "") {
+                        text = initialText;
+                    }
                     switchToViewMode();
                 });
 
@@ -51,7 +56,7 @@
                 });
             });
 
-            if (isNeedToAddNewChild === true) {
+            if (isNeedToAddNewChild) {
                 todoList.appendChild(todoItem);
             }
         }

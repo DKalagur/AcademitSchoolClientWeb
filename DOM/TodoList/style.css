@@ -10,25 +10,21 @@ h1 {
     margin-top: 3px;
 }
 
-.todo-text:focus {
-    color:red;
- }
-
 .todo-text {
     padding: 5px;
     border: none;
-    border-bottom: 2px solid red;
+    border-bottom: 2px solid #33e00c;
 }
 
 button {
     padding: 5px;
-}
-
-button:active {
-    background-color: cornsilk;
-    color: red;
+    margin: 2px;
 }
 
 .item {
     padding-right: 10px;
+}
+
+.common{
+    margin: 10px;
 }
