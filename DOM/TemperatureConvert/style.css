@@ -3,21 +3,21 @@
 }
 
 .convert-button {
-background-color: #4CAF50;
-color:white;
-padding:3px 30px;
-border-radius:0.4em;
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 3px 30px;
+    border-radius: 0.4em;
 }
 
-.convert-button:hover{
-background-color: white;
-color:#4CAF50;
+.convert-button:hover {
+    background-color: #fff;
+    color: #4CAF50;
 }
 
-.common{
-font-family: 'Roboto',sans-serif;
+.common {
+    font-family: 'Roboto', sans-serif;
 }
 
-.convert{
-color:#4CAF50;
+.convert {
+    color: #4CAF50;
 }

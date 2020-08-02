@@ -9,7 +9,7 @@
             alert("Необходимо ввести число. Повторите ввод");
             temperatureTextField.value = "";
         } else {
-            //создаем текст с информацией о конвертированной температуре
+            // создаем текст с информацией о конвертированной температуре
             var convertToKelvinText = document.createElement("p");
             convertToKelvinText.textContent = "Температура по шкале Кельвина: " + (parseFloat(text) + 273.15).toFixed(2);
 
@@ -21,7 +21,7 @@
             var convertToKelvinProposition = document.getElementById("convertToKelvinProposition");
             var convertToFahrenheitProposition = document.getElementById("convertToFahrenheitProposition");
 
-            //если текстовых полей еще нет (первый ввод): создаем новые поля и присваим этим полям id. Если поля уже есть, то обновляем в них информацию
+            // если текстовых полей еще нет (первый ввод): создаем новые поля и присваим этим полям id. Если поля уже есть, то обновляем в них информацию
             if (convertToKelvinProposition == null) {
                 convertToKelvinProposition = document.body.appendChild(convertToKelvinText);
                 convertToKelvinProposition.id = "convertToKelvinProposition";
@@ -35,8 +35,9 @@
             } else {
                 convertToFahrenheitProposition.textContent = convertToFahrenheitText.textContent;
             }
-            convertToFahrenheitProposition.setAttribute("class", "convert");
-            convertToKelvinProposition.setAttribute("class", "convert");
+
+            convertToFahrenheitProposition.className = "convert";
+            convertToKelvinProposition.className = "convert";
         }
     }
 
