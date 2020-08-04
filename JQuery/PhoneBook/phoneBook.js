@@ -144,10 +144,11 @@ $(document).ready(function () {
 
         bodyTr.not($("tr").has(includingSubstringCells)).hide();
         bodyTr.has(includingSubstringCells).show();
+        $("#search").val("");
     }
 
     // навешиваем обработчик на кнопку "Поиск"
-    $("#do-search").click(search());
+    $("#do-search").click(search);
 
     // навешиваем обработчик на ввод в поле "Поиск"
     $('#search').keydown(function (e) {
