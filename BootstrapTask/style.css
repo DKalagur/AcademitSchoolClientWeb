@@ -1,0 +1,28 @@
+.block-left {
+    width: 60%;
+    overflow: auto;
+    float: left;
+}
+
+.block-right {
+    width: 40%;
+    overflow: auto;
+    text-align: center;
+    margin: auto;
+}
+
+.checkbox-cell {
+    width: 7.3%;
+    padding-right: 10px;
+    text-align: center;
+}
+
+.block-right input {
+    display: table;
+    margin: auto;
+    text-align: center;
+}
+
+.main-checkbox {
+    display: inherit;
+}

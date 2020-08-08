@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Task Phone Book</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="node_modules/jquery-confirm/css/jquery-confirm.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="block-left">
+        <h3>Таблица с контактами</h3>
+        <div class="container my-3">
+            <div class="row">
+                <div class="col-9">
+                    <form class="form">
+                        <label class="search-field">Поиск
+                            <input type="text" id="search" class="align-middle">
+                        </label>
+                        <button type="button" class="btn btn-primary btn-sm px-5" id="do-search">Найти</button>
+                        <button type="button" class="btn btn-secondary btn-sm px-5" id="cancel-search">Отмена</button>
+                    </form>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-secondary btn-sm" id="del-selected-row">Удалить выделенное
+                    </button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th style="width:10%" scope="col"><label class="main-checkbox" for="main-checkbox"><input
+                        type='checkbox' id='main-checkbox'></label></th>
+                <th style="width:10%" id="number">№</th>
+                <th style="width:25%" id="table-surname">Фамилия</th>
+                <th style="width:25%" id="table-name">Имя</th>
+                <th style="width:25%" id="table-phone">Номер телефона</th>
+                <th style="width:5%"></th>
+            </tr>
+            </thead>
+
+            <tbody id="tbody">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="block-right" id="block-right">
+        <h3>Форма добавления нового контакта</h3>
+        <form class="needs-validation" novalidate>
+            <div class="form-group">
+                <label for="form-surname">Фамилия</label>
+                <input type="text" id="form-surname" class="form-control col-4" required>
+                <div class="valid-feedback">Ок!</div>
+                <div class="invalid-feedback">Пожалуйста введите фамилию</div>
+            </div>
+
+            <div class="form-group">
+                <label for="form-name">Имя</label>
+                <input type="text" id="form-name" class="form-control col-4" required>
+                <div class="valid-feedback">Ок!</div>
+                <div class="invalid-feedback">Пожалуйста введите имя</div>
+            </div>
+
+            <div class="form-group">
+                <label for="form-phone">Номер телефона</label>
+                <input type="text" id="form-phone" class="form-control col-4" required>
+                <div class="valid-feedback">Ок!</div>
+                <div class="invalid-feedback" id="invalid-phone">Пожалуйста введите номер телефона</div>
+            </div>
+
+            <div class="my-2">
+                <button type="button" id="add-new-people" class="btn btn-primary">Добавить запись</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/jquery-confirm/js/jquery-confirm.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="phoneBook.js"></script>
+</body>
+</html>
