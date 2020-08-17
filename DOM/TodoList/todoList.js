@@ -15,7 +15,7 @@
         }
 
         function switchToViewMode() {
-            todoItem.innerHTML = "<span class='item'></span><button type='button' class='edit-button'>Редактировать</button><button type='button' class='delete-button'>Удалить</button>";
+            todoItem.innerHTML = "<span class='item'></span><button type='button' class='edit-button my-button'>Редактировать</button><button type='button' class='delete-button my-button'>Удалить</button>";
             todoItem.children[0].textContent = text;
 
             todoItem.querySelector(".delete-button").addEventListener("click", function () {
@@ -23,7 +23,7 @@
             });
 
             todoItem.querySelector(".edit-button").addEventListener("click", function () {
-                todoItem.innerHTML = "<input type='text' class='todo-text'><button type='button' class='save-button'>Сохранить</button><button type='button' class='cancel-button'>Отменить</button>";
+                todoItem.innerHTML = "<input type='text' class='todo-text'><button type='button' class='save-button my-button'>Сохранить</button><button type='button' class='cancel-button my-button'>Отменить</button>";
                 todoItem.children[0].value = text;
 
                 var initialText = text;
