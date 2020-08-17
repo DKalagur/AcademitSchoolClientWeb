@@ -26,7 +26,7 @@ $(document).ready(function () {
             inputFieldsValues.push($(this).val());
             if ($.trim($(this).val()).length === 0) {
                 // кладем в массив название незаполненных полей
-                emptyFieldsName.push($(this).closest('label').text());
+                emptyFieldsName.push($(this).closest("label").text());
                 $(this).addClass("empty-field");
                 notAllFieldsEnteredError = true;
             }
@@ -39,9 +39,9 @@ $(document).ready(function () {
             })
         } else if (samePhoneIsExistError) {
             $.alert({
-                title: 'Ошибка!',
-                content: 'Контакт с таким телефоном уже существует!',
-                boxWidth: '300px',
+                title: "Error!",
+                content: "Contact with the same phone is already exist!",
+                boxWidth: "300px",
                 useBootstrap: false,
             });
         } else {
@@ -49,7 +49,7 @@ $(document).ready(function () {
             var newLine = $("<tr></tr>");
 
             // добавляем поле-чек бокс
-            newLine.append($("<td class='notInfoCell'><input type='checkbox' class='check'></td>"));
+            newLine.append($("<td class='not-info-cell'><input type='checkbox' class='check'></td>"));
 
             // добавляем поле-номер
             newLine.append($("<td class='number'></td>").text($(".number").length + 1));
@@ -60,12 +60,12 @@ $(document).ready(function () {
                 $("<td></td>")
                     .text(element)
                     .addClass(fieldClasses[index])
-                    .addClass("infoCell")
+                    .addClass("info-cell")
                     .appendTo(newLine);
             });
 
             // добавляем кнопку "удалить"
-            newLine.append("<td class='notInfoCell'><button type='button' class ='close'>X</button></td>");
+            newLine.append("<td class='not-info-cell'><button type='button' class ='close'>X</button></td>");
 
             $("#tbody").append(newLine);
 
@@ -75,9 +75,9 @@ $(document).ready(function () {
 
                 // выводим сообщение-confirmation
                 $.confirm({
-                    title: 'Предупреждение',
-                    content: 'Вы уверены?',
-                    boxWidth: '300px',
+                    title: "Warning",
+                    content: "Are you sure?",
+                    boxWidth: "300px",
                     useBootstrap: false,
                     buttons: {
                         yes: function () {
@@ -85,11 +85,11 @@ $(document).ready(function () {
                             recalculateNumbersAfterDel();
                         },
                         cancel: function () {
-                        },
+                        }
                     }
                 });
             });
-            $("input").val("");
+            $(".block-right input").val("");
         }
     });
 
@@ -101,27 +101,24 @@ $(document).ready(function () {
 
     // навешиваем обработчик на чек-бокс в шапке
     $("#main-checkbox").change(function () {
-        if ($(this).is(':checked')) {
-            $(".check").prop('checked', true);
-        } else {
-            $(".check").prop('checked', false);
-        }
+        var isChecked = $(this).is(":checked");
+        $(".check:visible").prop("checked", isChecked);
     });
 
     // навешиваем обработчик на кнопку "Удалить выделенное"
     $("#del-selected-row").click(function () {
         // confirmation-form
         $.confirm({
-            title: 'Предупреждение',
-            content: 'Вы уверены?',
-            boxWidth: '300px',
+            title: "Warning",
+            content: "Are you sure?",
+            boxWidth: "300px",
             useBootstrap: false,
             buttons: {
                 yes: function () {
                     // удаляем все выделенные строки (кроме шапки таблицы)
                     $(":checked:not(#main-checkbox)").closest("tr").remove();
                     // скидываем чекбокс в шапке таблицы
-                    $("#main-checkbox").prop('checked', false);
+                    $("#main-checkbox").prop("checked", false);
                     // после удаления строки пересчитываем номера оставшихся строк
                     recalculateNumbersAfterDel();
                 },
@@ -135,12 +132,12 @@ $(document).ready(function () {
         var substring = $("#search").val();
 
         // находим ячейки таблицы, текст которых содержит искомую подстроку
-        var includingSubstringCells = $(".infoCell").filter(function () {
+        var includingSubstringCells = $(".info-cell").filter(function () {
             var self = $(this);
             return self.text().includes(substring);
         });
 
-        var bodyTr = $("tbody tr");
+        var bodyTr = $(".contacts-table tbody tr");
 
         bodyTr.not($("tr").has(includingSubstringCells)).hide();
         bodyTr.has(includingSubstringCells).show();
@@ -151,7 +148,7 @@ $(document).ready(function () {
     $("#do-search").click(search);
 
     // навешиваем обработчик на ввод в поле "Поиск"
-    $('#search').keydown(function (e) {
+    $("#search").keydown(function (e) {
         if (e.key === "Enter") {
             search();
             e.preventDefault();
@@ -160,7 +157,7 @@ $(document).ready(function () {
 
     // навешиваем обработчик на кнопку "Отмена поиска"
     $("#cancel-search").click(function () {
-        $("tr").show();
+        $(".contacts-table tbody tr").show();
         $("#search").val("");
     });
 });

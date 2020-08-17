@@ -55,7 +55,7 @@
     width: 100%;
 }
 
-.common td {
+.contacts-table td {
     vertical-align: middle;
     border: 1px solid #CCC;
     padding-left: 10px;
@@ -63,7 +63,6 @@
 
 .thead {
     background-color: #EEE;
-    color: #ff7569;
 }
 
 .del-selected {
@@ -81,7 +80,11 @@
     text-align: left;
 }
 
-.notInfoCell {
+.not-info-cell {
     text-align: center;
     padding-right: 10px;
+}
+
+.add-contact-button {
+    margin-top: 10px;
 }
