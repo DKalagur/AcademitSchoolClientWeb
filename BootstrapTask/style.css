@@ -1,14 +1,38 @@
-.block-left {
-    width: 60%;
-    overflow: auto;
-    float: left;
+@media screen and (min-width: 0px) {
+    .block-left {
+        width: 100%;
+        overflow: auto;
+        float: left;
+    }
+
+    .block-right {
+        width: 100%;
+        overflow: auto;
+        text-align: center;
+        margin: auto;
+    }
 }
 
-.block-right {
-    width: 40%;
-    overflow: auto;
-    text-align: center;
-    margin: auto;
+@media screen and (min-width: 977px) {
+    .block-left {
+        width: 60%;
+        overflow: auto;
+        float: left;
+
+    }
+
+    .block-right {
+        width: 40%;
+        overflow: auto;
+        text-align: center;
+        margin: auto;
+    }
+}
+
+.col-3 button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 .checkbox-cell {
@@ -25,4 +49,17 @@
 
 .main-checkbox {
     display: inherit;
+}
+
+.th-main {
+    text-align: -webkit-center;
+}
+
+.close {
+    margin-top: -0.125em;
+}
+
+.control-form {
+    margin-left: 0;
+    margin-right: 0;
 }

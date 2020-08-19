@@ -1,12 +1,13 @@
 ﻿$(document).ready(function () {
+    var errorListBlock = $("#error-list-block");
     // навешиваем обработчик на кнопку "Добавить запись"
     $("#add-new-people").click(function () {
         // очищаем старую информацию и стили
-        var inputForms = $(".form-control");
-        inputForms.removeClass("is-valid is-invalid");
+        //$(".block-right input").removeClass("empty-field");
+        $(".form-control").removeClass("is-valid is-invalid");
         $("#invalid-phone").text("Пожалуйста введите номер телефона");
 
-        // блок проверки на незаполненные поля       
+        // блок проверки на незаполненные поля
         var inputFieldsValues = []; // заводим массив, в которой будем хранить введенные значения
 
         $(".block-right input").each(function () {
@@ -19,17 +20,17 @@
         });
 
         // блок проверки, что контакт с таким номером уже существует
-        var inputPhone = $("#form-phone");
+        var inputPhone = $("#form-phone").val();
 
         $(".phone").each(function () {
-            if ($(this).text() === inputPhone.val()) {
-                inputPhone.removeClass("is-valid");
+            if ($(this).text() === inputPhone) {
+                $("#form-phone").removeClass("is-valid");
                 $("#invalid-phone").text("Телефон с таким номером уже существует!");
-                inputPhone.addClass("is-invalid");
+                $("#form-phone").addClass("is-invalid");
             }
         });
 
-        if (!inputForms.hasClass("is-invalid")) {
+        if (!$(".form-control").hasClass("is-invalid")) {
             // формируем строку для добавления в таблицу в контактами
             var newLine = $("<tr></tr>");
 
@@ -50,7 +51,7 @@
             });
 
             // добавляем кнопку "удалить"
-            newLine.append("<td class='notInfoCell'><button type='button' class ='close align-middle'>х</button></td>");
+            newLine.append("<td class='notInfoCell'><button type='button' class ='close'>х</button></td>");
 
             $("#tbody").append(newLine);
 
@@ -60,9 +61,9 @@
 
                 // выводим сообщение-confirmation
                 $.confirm({
-                    title: 'Предупреждение',
-                    content: 'Вы уверены?',
-                    boxWidth: '300px',
+                    title: "Предупреждение",
+                    content: "Вы уверены?",
+                    boxWidth: "300px",
                     useBootstrap: false,
                     buttons: {
                         yes: function () {
@@ -75,7 +76,7 @@
                 });
             });
             $("input").val("");
-            inputForms.removeClass("is-valid is-invalid");
+            $(".form-control").removeClass("is-valid is-invalid");
         }
     });
 
@@ -87,10 +88,10 @@
 
     // навешиваем обработчик на чек-бокс в шапке
     $("#main-checkbox").change(function () {
-        if ($(this).is(':checked')) {
-            $(".check").prop('checked', true);
+        if ($(this).is(":checked")) {
+            $(".check").prop("checked", true);
         } else {
-            $(".check").prop('checked', false);
+            $(".check").prop("checked", false);
         }
     });
 
@@ -98,16 +99,16 @@
     $("#del-selected-row").click(function () {
         // confirmation-form
         $.confirm({
-            title: 'Предупреждение',
-            content: 'Вы уверены?',
-            boxWidth: '300px',
+            title: "Предупреждение",
+            content: "Вы уверены?",
+            boxWidth: "300px",
             useBootstrap: false,
             buttons: {
                 yes: function () {
                     // удаляем все выделенные строки (кроме шапки таблицы)
                     $(":checked:not(#main-checkbox)").closest("tr").remove();
                     // скидываем чекбокс в шапке таблицы
-                    $("#main-checkbox").prop('checked', false);
+                    $("#main-checkbox").prop("checked", false);
                     // после удаления строки пересчитываем номера оставшихся строк
                     recalculateNumbersAfterDel();
                 },
@@ -117,10 +118,8 @@
         });
     });
 
-    var searchForm = $("#search");
-
     function search() {
-        var substring = searchForm.val();
+        var substring = $("#search").val();
 
         // находим ячейки таблицы, текст которых содержит искомую подстроку
         var includingSubstringCells = $(".infoCell").filter(function () {
@@ -129,17 +128,16 @@
         });
 
         var bodyTr = $("tbody tr");
-
         bodyTr.not($("tr").has(includingSubstringCells)).hide();
         bodyTr.has(includingSubstringCells).show();
-        searchForm.val("");
+        $("#search").val("");
     }
 
     // навешиваем обработчик на кнопку "Поиск"
     $("#do-search").click(search);
 
     // навешиваем обработчик на ввод в поле "Поиск"
-    $('#search').keydown(function (e) {
+    $("#search").keydown(function (e) {
         if (e.key === "Enter") {
             search();
             e.preventDefault();
@@ -149,6 +147,6 @@
     // навешиваем обработчик на кнопку "Отмена поиска"
     $("#cancel-search").click(function () {
         $("tr").show();
-        searchForm.val("");
+        $("#search").val("");
     });
 });

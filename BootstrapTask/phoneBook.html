@@ -3,46 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <title>Task Phone Book</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="node_modules/jquery-confirm/css/jquery-confirm.css">
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid my-3">
     <div class="block-left">
         <h3>Таблица с контактами</h3>
-        <div class="container my-3">
-            <div class="row">
-                <div class="col-9">
-                    <form class="form">
-                        <label class="search-field">Поиск
-                            <input type="text" id="search" class="align-middle">
-                        </label>
-                        <button type="button" class="btn btn-primary btn-sm px-5" id="do-search">Найти</button>
-                        <button type="button" class="btn btn-secondary btn-sm px-5" id="cancel-search">Отмена</button>
-                    </form>
-                </div>
-                <div class="col-3">
-                    <button type="button" class="btn btn-secondary btn-sm" id="del-selected-row">Удалить выделенное
+        <div class="row w-100 my-3 control-form">
+            <div class="col-9">
+                <form class="form">
+                    <label class="search-field my-1">Поиск
+                        <input type="text" id="search" class="align-middle form-control form-control-sm">
+                    </label>
+                    <button type="button" class="btn btn-primary btn-sm px-5 my-1 align-baseline" id="do-search">Найти
                     </button>
-                </div>
+                    <button type="button" class="btn btn-secondary btn-sm px-5 my-1 align-baseline" id="cancel-search">
+                        Отмена
+                    </button>
+                </form>
+            </div>
+
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary btn-sm float-right d-flex align-items-end my-1"
+                        id="del-selected-row">Удалить выделенное
+                </button>
             </div>
         </div>
+
         <table class="table table-hover">
-            <thead>
+            <thead class="table table-hover">
             <tr>
-                <th style="width:10%" scope="col"><label class="main-checkbox" for="main-checkbox"><input
-                        type='checkbox' id='main-checkbox'></label></th>
-                <th style="width:10%" id="number">№</th>
-                <th style="width:25%" id="table-surname">Фамилия</th>
-                <th style="width:25%" id="table-name">Имя</th>
-                <th style="width:25%" id="table-phone">Номер телефона</th>
-                <th style="width:5%"></th>
+                <th class="w-10" scope="col"><label class="main-checkbox" for="main-checkbox"><input type='checkbox'
+                                                                                                     id='main-checkbox'></label>
+                </th>
+                <th class="w-10" id="number">№</th>
+                <th class="w-25" id="table-surname">Фамилия</th>
+                <th class="w-25" id="table-name">Имя</th>
+                <th class="w-25" id="table-phone">Номер телефона</th>
+                <th class="w-5"></th>
             </tr>
             </thead>
-
             <tbody id="tbody">
             </tbody>
         </table>
@@ -53,21 +56,21 @@
         <form class="needs-validation" novalidate>
             <div class="form-group">
                 <label for="form-surname">Фамилия</label>
-                <input type="text" id="form-surname" class="form-control col-4" required>
+                <input type="text" id="form-surname" class="form-control col-lg-8 col-xl-7 col-sm-8" required>
                 <div class="valid-feedback">Ок!</div>
                 <div class="invalid-feedback">Пожалуйста введите фамилию</div>
             </div>
 
             <div class="form-group">
                 <label for="form-name">Имя</label>
-                <input type="text" id="form-name" class="form-control col-4" required>
+                <input type="text" id="form-name" class="form-control col-lg-8 col-xl-7 col-sm-8" required>
                 <div class="valid-feedback">Ок!</div>
                 <div class="invalid-feedback">Пожалуйста введите имя</div>
             </div>
 
             <div class="form-group">
                 <label for="form-phone">Номер телефона</label>
-                <input type="text" id="form-phone" class="form-control col-4" required>
+                <input type="text" id="form-phone" class="form-control col-lg-8 col-xl-7 col-sm-8" required>
                 <div class="valid-feedback">Ок!</div>
                 <div class="invalid-feedback" id="invalid-phone">Пожалуйста введите номер телефона</div>
             </div>
