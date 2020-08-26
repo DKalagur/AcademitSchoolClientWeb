@@ -14,6 +14,7 @@ $(document).ready(function () {
         $(".phone").each(function () {
             if ($(this).text() === inputPhone) {
                 samePhoneIsExistError = true;
+                return false;
             }
         });
 
@@ -39,8 +40,8 @@ $(document).ready(function () {
             })
         } else if (samePhoneIsExistError) {
             $.alert({
-                title: "Error!",
-                content: "Contact with the same phone is already exist!",
+                title: "Ошибка!",
+                content: "Контакт с таким телефоном уже существует!",
                 boxWidth: "300px",
                 useBootstrap: false,
             });
@@ -75,16 +76,16 @@ $(document).ready(function () {
 
                 // выводим сообщение-confirmation
                 $.confirm({
-                    title: "Warning",
-                    content: "Are you sure?",
+                    title: "Предупреждение",
+                    content: "Вы уверены?",
                     boxWidth: "300px",
                     useBootstrap: false,
                     buttons: {
-                        yes: function () {
+                        Да: function () {
                             self.closest("tr").remove();
                             recalculateNumbersAfterDel();
                         },
-                        cancel: function () {
+                        Отмена: function () {
                         }
                     }
                 });
@@ -109,12 +110,12 @@ $(document).ready(function () {
     $("#del-selected-row").click(function () {
         // confirmation-form
         $.confirm({
-            title: "Warning",
-            content: "Are you sure?",
+            title: "Предупреждение",
+            content: "Вы уверены?",
             boxWidth: "300px",
             useBootstrap: false,
             buttons: {
-                yes: function () {
+                Да: function () {
                     // удаляем все выделенные строки (кроме шапки таблицы)
                     $(":checked:not(#main-checkbox)").closest("tr").remove();
                     // скидываем чекбокс в шапке таблицы
@@ -122,8 +123,8 @@ $(document).ready(function () {
                     // после удаления строки пересчитываем номера оставшихся строк
                     recalculateNumbersAfterDel();
                 },
-                cancel: function () {
-                },
+                Отмена: function () {
+                }
             }
         });
     });
