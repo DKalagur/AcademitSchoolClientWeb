@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Task Phone Book</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div v-cloak id="phoneBook">
+        <main-window></main-window>
+    </div>
+
+    <script type="text/x-template" id="input-form-template">
+        <div>
+            <h3>Форма добавления нового контакта</h3>
+            <label class="d-block">Фамилия
+                <input type="text" v-bind:class="{invalid:!isValidName}" v-model="newName"
+                       class="form-control col-lg-8 col-xl-7 col-sm-8">
+            </label>
+            <div v-show="!isValidName" class="input-message"><p class="text-danger my-0">Пожалуйста заполните поле</p>
+            </div>
+
+            <label class="d-block">Имя
+                <input type="text" v-bind:class="{invalid:!isValidLastName}" v-model="newLastName"
+                       class="form-control col-lg-8 col-xl-7 col-sm-8">
+            </label>
+            <div v-show="!isValidLastName" class="input-message"><p class="text-danger my-0">Пожалуйста заполните
+                поле</p></div>
+
+            <label class="d-block">Номер телефона
+                <input type="text" v-bind:class="{invalid:!isValidPhone}" v-model="newPhone"
+                       class="form-control col-lg-8 col-xl-7 col-sm-8">
+            </label>
+            <div v-show="!isValidPhone" class="input-message"><p v-text="this.phoneFieldValidationMessage"
+                                                                 class="text-danger my-0"></p></div>
+            <button type="button" @click="addItem" class="btn btn-primary my-2">Добавить запись</button>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="table-contacts-template">
+        <div>
+            <!-- Modal -->
+            <div class="modal fade" id="deleteAllPicked" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                 role="dialog" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel1">Предупреждение</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Вы уверены?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                            <button type="button" class="btn btn-primary" @click="deleteCheckedItems"
+                                    data-dismiss="modal">Да
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="deleteItem" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                 role="dialog" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel2">Предупреждение</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Вы уверены?
+                        </div>
+                        <div class="modal-footer" :itemForDel="this.itemForDel">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                            <button type="button" class="btn btn-primary" @click="deleteItem(itemForDel)"
+                                    data-dismiss="modal">Да
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid my-3">
+                <div class="block-left">
+                    <h3>Таблица с контактами</h3>
+                    <div class="row w-100 my-3 control-form">
+                        <div class="col-9">
+                            <form class="form">
+                                <label class="search-field my-1">Поиск
+                                    <input type="text" v-model="searchText" id="search"
+                                           class="align-middle form-control form-control-sm">
+                                </label>
+                                <button type="button" @click="searchItem"
+                                        class="btn btn-primary btn-sm px-5 my-1 align-baseline" id="do-search">Найти
+                                </button>
+                                <button type="button" @click="cancelSearchItem"
+                                        class="btn btn-secondary btn-sm px-5 my-1 align-baseline" id="cancel-search">
+                                    Отмена
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="col-3">
+                            <button type="button"
+                                    class="btn btn-secondary btn-sm float-right d-flex align-items-end my-1"
+                                    data-toggle="modal" data-target="#deleteAllPicked">Удалить выделенное
+                            </button>
+                        </div>
+                    </div>
+
+                    <table class="table table-hover">
+                        <thead class="table table-hover">
+                        <tr>
+                            <th class="w-10" scope="col"><label class="main-checkbox" for="main-checkbox"><input
+                                    type="checkbox" v-on:change="pickAllItems($event.target.checked)"
+                                    v-model="selectAll" id="main-checkbox"></label></th>
+                            <th class="w-10" id="number">№</th>
+                            <th class="w-25" id="table-surname">Фамилия</th>
+                            <th class="w-25" id="table-name">Имя</th>
+                            <th class="w-25" id="table-phone">Номер телефона</th>
+                            <th class="w-5"></th>
+                        </tr>
+                        </thead>
+                        <tr>
+                        </tr>
+                        <tbody id="tbody">
+                        <tr :item="item" v-for="(item,index) in filteredItems">
+                            <td><label for="checkbox"></label><input type="checkbox" :value="item"
+                                                                     v-model="selectedForDelContacts"
+                                                                     id="checkbox"></td>
+                            <td>{{index+1}}</td>
+                            <td>{{item.lastName}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.phone}}</td>
+                            <td>
+                                <button type="button" class="close" data-toggle="modal" data-target="#deleteItem"
+                                        @click="chooseItem(item)">X
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="block-right" id="block-right">
+                    <input-form @add-item="addItem" :phone="this.phones"></input-form>
+                </div>
+            </div>
+        </div>
+    </script>
+</div>
+
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/underscore/underscore-min.js"></script>
+<script src="phoneBook.js"></script>
+</body>
+</html>
