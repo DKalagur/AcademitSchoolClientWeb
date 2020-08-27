@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Task Todo List Vue</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -23,11 +24,13 @@
             <template v-else>
                 <div class="row m-0">
                     <label for="item-input"></label>
-                    <input v-model="item.text" v-on:keyup.enter="saveItem" id="item-input">
-                    <button @click="saveItem" type="button" class="btn btn-secondary btn-sm mx-1">Save</button>
+                    <input v-on:keyup.enter="saveItem" id="item-input" v-model="item.inputFieldText">
+                    <button @click="saveItem(item.inputFieldText)" type="button" class="btn btn-secondary btn-sm mx-1">
+                        Save
+                    </button>
                     <button @click="cancelEdit" type="button" class="btn btn-primary btn-sm">Cancel</button>
                 </div>
-                <p v-show="item.text.trim().length === 0" class="text-danger my-0">Please input text</p>
+                <span v-if="item.isEmptyFieldText" class="text-danger my-0">Please input text</span>
             </template>
         </div>
     </script>
@@ -39,7 +42,7 @@
                 <label for="add-item-input"></label>
                 <input v-model="newItemText" v-on:keyup.enter="addItem" type="text" id="add-item-input">
                 <button @click="addItem" type="button" class="btn btn-primary btn-sm mx-2">Add</button>
-                <span v-show="isEmptyText" class="text-danger my-0">Please input text</span>
+                <span v-if="isEmptyInputText" class="text-danger my-0">Please input text</span>
             </div>
             <div class="m-1">
                 <todo-item

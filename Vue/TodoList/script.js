@@ -3,22 +3,32 @@ Vue.component("todo-item", {
         item: {
             type: Object,
             required: true,
+        },
+    },
+    data: function () {
+        return {
+            inputFieldText: this.item.text,
         }
     },
+
     methods: {
         deleteItem: function () {
             this.$emit("delete-item", this.item);
         },
+
         editItem: function () {
             this.$emit("edit-item", this.item);
         },
-        saveItem: function () {
-            this.$emit("save-item", this.item);
+
+        saveItem: function (currentText) {
+            this.$emit("save-item", this.item, currentText);
         },
+
         cancelEdit: function () {
             this.$emit("cancel-edit", this.item);
-        },
+        }
     },
+
     template: "#todo-item-template"
 });
 
@@ -28,44 +38,57 @@ Vue.component("todo-list", {
             items: [],
             newItemText: "",
             newId: 1,
-            isEmptyText: false
-        };
+            isEmptyInputText: false
+        }
     },
+
     methods: {
         addItem: function () {
             if (this.newItemText.trim().length === 0) {
-                this.isEmptyText = true;
+                this.isEmptyInputText = true;
                 return;
             }
-            this.isEmptyText = false;
+
+            this.isEmptyInputText = false;
             this.items.push({
                 id: this.newId,
                 text: this.newItemText,
-                editingMode: false
+                editingMode: false,
+                isEmptyFieldText: false
             });
+
             this.newId++;
             this.newItemText = "";
         },
+
         deleteItem: function (item) {
             this.items = this.items.filter(function (e) {
                 return e !== item;
             });
         },
+
         editItem: function (item) {
             item.editingMode = true;
-            item.currentValue = item.text;
+            item.inputFieldText = item.text;
         },
-        saveItem: function (item) {
-            if (item.text.trim().length === 0) {
+
+        saveItem: function (item, currentText) {
+            if (currentText.trim().length === 0) {
+                item.isEmptyFieldText = true;
                 return;
             }
+
+            item.isEmptyFieldText = false;
             item.editingMode = false;
+            item.text = currentText;
         },
+
         cancelEdit: function (item) {
-            item.text = item.currentValue;
             item.editingMode = false;
+            item.isEmptyFieldText = false;
         }
     },
+
     template: "#todo-list-template"
 });
 
