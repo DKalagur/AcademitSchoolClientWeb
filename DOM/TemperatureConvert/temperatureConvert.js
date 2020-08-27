@@ -7,7 +7,6 @@
 
         if (isNaN(Number(text)) || text.trim().length === 0) {
             alert("Необходимо ввести число. Повторите ввод");
-            temperatureTextField.value = "";
             return;
         }
 
@@ -17,8 +16,6 @@
 
         var convertToFahrenheitText = document.createElement("p");
         convertToFahrenheitText.textContent = "Температура по шкале Фаренгейта: " + (parseFloat(text) * 9 / 5 + 32).toFixed(2);
-
-        temperatureTextField.value = "";
 
         var convertToKelvinProposition = document.getElementById("convertToKelvinProposition");
         var convertToFahrenheitProposition = document.getElementById("convertToFahrenheitProposition");
