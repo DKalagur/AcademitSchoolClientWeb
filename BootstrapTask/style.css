@@ -11,14 +11,17 @@
         text-align: center;
         margin: auto;
     }
+
+    /*   .search-block {
+           margin-bottom:-15px;
+       }*/
 }
 
-@media screen and (min-width: 977px) {
+@media screen and (min-width: 768px) {
     .block-left {
         width: 60%;
         overflow: auto;
         float: left;
-
     }
 
     .block-right {
@@ -27,12 +30,12 @@
         text-align: center;
         margin: auto;
     }
-}
 
-.col-3 button {
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    .del {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
 }
 
 .checkbox-cell {

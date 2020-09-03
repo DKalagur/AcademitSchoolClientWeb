@@ -3,7 +3,6 @@
     // навешиваем обработчик на кнопку "Добавить запись"
     $("#add-new-people").click(function () {
         // очищаем старую информацию и стили
-        //$(".block-right input").removeClass("empty-field");
         $(".form-control").removeClass("is-valid is-invalid");
         $("#invalid-phone").text("Пожалуйста введите номер телефона");
 
@@ -35,7 +34,7 @@
             var newLine = $("<tr></tr>");
 
             // добавляем поле-чек бокс
-            newLine.append($("<td class='notInfoCell'><input type='checkbox' class='check'></td>"));
+            newLine.append($("<td class='not-info-cell pt-3'><input type='checkbox' class='check'></td>"));
 
             // добавляем поле-номер
             newLine.append($("<th class='number' scope='row'></td>").text($(".number").length + 1));
@@ -46,12 +45,12 @@
                 $("<td></td>")
                     .text(element)
                     .addClass(fieldClasses[index])
-                    .addClass("infoCell")
+                    .addClass("info-cell")
                     .appendTo(newLine);
             });
 
             // добавляем кнопку "удалить"
-            newLine.append("<td class='notInfoCell'><button type='button' class ='close'>х</button></td>");
+            newLine.append("<td class='not-info-cell'><button type='button' class ='close' title='Удалить контакт'>х</button></td>");
 
             $("#tbody").append(newLine);
 
@@ -66,16 +65,16 @@
                     boxWidth: "300px",
                     useBootstrap: false,
                     buttons: {
-                        yes: function () {
+                        "Да": function () {
                             self.closest("tr").remove();
                             recalculateNumbersAfterDel();
                         },
-                        cancel: function () {
-                        },
+                        "Нет": function () {
+                        }
                     }
                 });
             });
-            $("input").val("");
+            $(".block-right input").val("");
             $(".form-control").removeClass("is-valid is-invalid");
         }
     });
@@ -88,11 +87,8 @@
 
     // навешиваем обработчик на чек-бокс в шапке
     $("#main-checkbox").change(function () {
-        if ($(this).is(":checked")) {
-            $(".check").prop("checked", true);
-        } else {
-            $(".check").prop("checked", false);
-        }
+        var isChecked = $(this).is(":checked");
+        $(".check:visible").prop("checked", isChecked);
     });
 
     // навешиваем обработчик на кнопку "Удалить выделенное"
@@ -104,7 +100,7 @@
             boxWidth: "300px",
             useBootstrap: false,
             buttons: {
-                yes: function () {
+                "Да": function () {
                     // удаляем все выделенные строки (кроме шапки таблицы)
                     $(":checked:not(#main-checkbox)").closest("tr").remove();
                     // скидываем чекбокс в шапке таблицы
@@ -112,8 +108,8 @@
                     // после удаления строки пересчитываем номера оставшихся строк
                     recalculateNumbersAfterDel();
                 },
-                cancel: function () {
-                },
+                "Нет": function () {
+                }
             }
         });
     });
@@ -122,12 +118,13 @@
         var substring = $("#search").val();
 
         // находим ячейки таблицы, текст которых содержит искомую подстроку
-        var includingSubstringCells = $(".infoCell").filter(function () {
+        var includingSubstringCells = $(".info-cell").filter(function () {
             var self = $(this);
             return self.text().includes(substring);
         });
 
-        var bodyTr = $("tbody tr");
+        var bodyTr = $(".contacts-table tbody tr");
+
         bodyTr.not($("tr").has(includingSubstringCells)).hide();
         bodyTr.has(includingSubstringCells).show();
         $("#search").val("");
@@ -146,7 +143,7 @@
 
     // навешиваем обработчик на кнопку "Отмена поиска"
     $("#cancel-search").click(function () {
-        $("tr").show();
+        $(".contacts-table tbody tr").show();
         $("#search").val("");
     });
 });
