@@ -120,7 +120,7 @@
         // находим ячейки таблицы, текст которых содержит искомую подстроку
         var includingSubstringCells = $(".info-cell").filter(function () {
             var self = $(this);
-            return self.text().includes(substring);
+            return self.text().indexOf(substring) >= 0;
         });
 
         var bodyTr = $(".contacts-table tbody tr");
