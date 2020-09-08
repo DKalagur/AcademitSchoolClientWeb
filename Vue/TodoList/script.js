@@ -2,25 +2,28 @@ Vue.component("todo-item", {
     props: {
         item: {
             type: Object,
-            required: true,
-        },
+            required: true
+        }
     },
+
     data: function () {
         return {
-            inputFieldText: this.item.text,
-        }
+            inputFieldText: this.item.text
+        };
     },
 
     methods: {
         deleteItem: function () {
-            this.$emit("delete-item", this.item);
+            this.$emit("delete-item", this.item, this.inputFieldText);
         },
 
         editItem: function () {
+            this.inputFieldText = this.item.text;
             this.$emit("edit-item", this.item);
         },
 
         saveItem: function (currentText) {
+            this.inputFieldText = currentText;
             this.$emit("save-item", this.item, currentText);
         },
 
@@ -39,7 +42,7 @@ Vue.component("todo-list", {
             newItemText: "",
             newId: 1,
             isEmptyInputText: false
-        }
+        };
     },
 
     methods: {
@@ -69,7 +72,6 @@ Vue.component("todo-list", {
 
         editItem: function (item) {
             item.editingMode = true;
-            item.inputFieldText = item.text;
         },
 
         saveItem: function (item, currentText) {
