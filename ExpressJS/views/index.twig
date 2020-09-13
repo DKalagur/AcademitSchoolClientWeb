@@ -1,0 +1,132 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+    {% verbatim %}
+    <div id="app" v-cloak class="container py-2">
+
+            <!-- Modal -->
+            <div class="modal fade" id="deleteItem" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                 role="dialog" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel2">Предупреждение</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Вы действительно хотите удалить контакт?
+                        </div>
+                        <div class="modal-footer" :contact-for-del="this.contactForDel">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                            <button type="button" class="btn btn-primary" @click="deleteContact(contactForDel)"
+                                    data-dismiss="modal">Да
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="deleteAllPicked" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                 role="dialog" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel1">Предупреждение</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Вы действительно хотите удалить выделенные контакты?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                            <button type="button" class="btn btn-primary" @click="deleteCheckedContacts"
+                                    data-dismiss="modal">Да
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <h1>PhoneBook</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <form>
+                  <div class="form-group my-0">
+                    <label>Имя</label>
+                    <input v-model="name" type="text" class="form-control mb-2" id="name" v-bind:class="{invalid: !isValidName}">
+                  </div>
+                  <div v-show="!isValidName" class="input-message"><p class="text-danger">Пожалуйста заполните поле</p>
+                  </div>
+                  <div class="form-group my-0">
+                    <label>Фамилия</label>
+                    <input v-model="lastName" type="text" class="form-control mb-2" id="lastName" v-bind:class="{invalid: !isValidLastName}">
+                  </div>
+                  <div v-show="!isValidLastName" class="input-message my-0"><p class="text-danger">Пожалуйста заполните
+                поле</p></div>
+
+                  <div class="form-group my-0">
+                    <label for="phone">Телефон</label>
+                    <input v-model="phone" type="text" class="form-control mb-2" id="phone" v-bind:class="{invalid: !isValidPhone}">
+                  </div>
+                <div v-show="!isValidPhone" class="input-message"><p v-text="this.phoneFieldValidationMessage"
+                                                                 class="text-danger"></p></div>
+
+                  <button type="button" @click="addContact" class="btn btn-primary mt-2">Создать</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row my-3 mr-0 ml-0 control-form w-100">
+            <form class="form-inline col-md-9 px-0">
+                <input v-model="term" type="text" class="form-control mr-2">
+                <button type="button" @click="searchContact" class="btn btn-primary mr-2">Поиск</button>
+                <button type="button" @click="cancelSearch" class="btn btn-secondary" :disabled="isCancelButtonDisabled">Отмена</button>
+            </form>
+
+            <div class="col-md-3 p-0float-right">
+                 <button type="button"
+                          class="btn btn-secondary float-md-right d-flex my-1"
+                          data-toggle="modal" data-target="#deleteAllPicked"
+                          :disabled="isDelCheckedItemButtonDisabled">Удалить выделенное
+                 </button>
+            </div>
+        </div>
+
+        <div class="table-responsive mt-4">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="w-10 pb-3" scope="col"><label class="main-checkbox" for="main-checkbox"><input
+                                    type="checkbox" v-on:change="pickAllContacts($event.target.checked)"
+                                    v-model="selectAll" id="main-checkbox"></label></th>
+                  <th>#</th>
+                  <th>Имя</th>
+                  <th>Фамилия</th>
+                  <th>Телефон</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(contact, index) in contacts">
+                <td><label for="checkbox"></label><input type="checkbox" :value="contact"
+                                                                     v-model="selectedForDelContacts"
+                                                                     id="checkbox"></td>
+                  <th>{{index+1}}</th>
+                  <td>{{contact.name}}</td>
+                  <td>{{contact.lastName}}</td>
+                  <td>{{contact.phone}}</td>
+                  <td>
+                  <button @click="chooseContact(contact)" class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteItem" title="Удалить контакт">x</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+    {% endverbatim %}
+{% endblock %}
